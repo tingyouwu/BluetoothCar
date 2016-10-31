@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">蓝牙小车</string>
+    <!--  BluetoothChat -->
+    <string name="send">Send</string>
+    <string name="not_connected">尚未连接蓝牙设备</string>
+    <string name="bt_not_enabled_leaving">蓝牙不可用，请重试！</string>
+    <string name="bt_enabled_success">成功打开蓝牙，请点击右下角连接蓝牙小车</string>
+    <string name="title_connecting">连接中...</string>
+    <string name="title_connected_to">已连接到: </string>
+    <string name="title_not_connected">未连接</string>
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">搜索中...</string>
+    <string name="select_device">选择一个已配对设备进行连接</string>
+    <string name="none_paired">没有已配对设备</string>
+    <string name="none_found">没有找到设备</string>
+    <string name="title_paired_devices">已配对设备</string>
+    <string name="title_other_devices">其他可用设备</string>
+    <string name="button_scan">搜索蓝牙设备</string>
+    <string name="paddingleft">20dp</string>
+
+    <!-- Options Menu -->
+    <string name="connect">连接其他蓝牙设备</string>
+    <string name="discoverable">设置本机蓝牙可发现</string>
+</resources>

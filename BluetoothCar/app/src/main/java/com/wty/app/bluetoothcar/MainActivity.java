@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wty.app.bluetoothcar.bluetooth.BluetoothChatService;
@@ -28,6 +29,7 @@ import static com.wty.app.bluetoothcar.bluetooth.BluetoothChatService.TOAST;
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton btngo,btnstop,btnleft,btnright,btnback,settings;
+    TextView tv_setting;
 
     private String upCode="1";
     private String backCode="2";
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnright = (ImageButton) findViewById(R.id.btnright);
         btnstop = (ImageButton) findViewById(R.id.btnstop);
         btnback = (ImageButton) findViewById(R.id.btnback);
+        tv_setting = (TextView) findViewById(R.id.tv_setting);
         initListener();
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
@@ -208,6 +211,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent serverIntent = new Intent(MainActivity.this, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
+            }
+        });
+
+        tv_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent serverIntent = new Intent(MainActivity.this, CodeSetttingActivity.class);
+                startActivity(serverIntent);
             }
         });
     }

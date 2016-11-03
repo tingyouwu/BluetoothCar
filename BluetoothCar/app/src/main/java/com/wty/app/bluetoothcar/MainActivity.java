@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.wty.app.bluetoothcar.bluetooth.BluetoothChatService;
 import com.wty.app.bluetoothcar.bluetooth.DeviceListActivity;
+import com.wty.app.bluetoothcar.utils.PreferenceUtil;
 
 import static com.wty.app.bluetoothcar.bluetooth.BluetoothChatService.DEVICE_NAME;
 import static com.wty.app.bluetoothcar.bluetooth.BluetoothChatService.MESSAGE_DEVICE_NAME;
@@ -30,12 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton btngo,btnstop,btnleft,btnright,btnback,settings;
     TextView tv_setting;
-
-    private String upCode="1";
-    private String backCode="2";
-    private String leftCode="3";
-    private String rightCode="4";
-    private String stopCode="0";
 
     private static final int REQUEST_CONNECT_DEVICE = 1;
     private static final int REQUEST_ENABLE_BT = 2;
@@ -131,12 +126,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                         btngo.setBackgroundResource(R.mipmap.up_press);
-                        sendMessage(upCode);
+                        sendMessage(PreferenceUtil.getInstance().getUpCode());
                         break;
 
                     case MotionEvent.ACTION_UP:
                         btngo.setBackgroundResource(R.mipmap.up);
-                        sendMessage(stopCode);
+                        sendMessage(PreferenceUtil.getInstance().getStopCode());
                         break;
                 }
                 return false;
@@ -150,11 +145,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                         btnleft.setBackgroundResource(R.mipmap.left_press);
-                        sendMessage(leftCode);
+                        sendMessage(PreferenceUtil.getInstance().getLeftCode());
                         break;
                     case MotionEvent.ACTION_UP:
                         btnleft.setBackgroundResource(R.mipmap.left);
-                        sendMessage(stopCode);
+                        sendMessage(PreferenceUtil.getInstance().getStopCode());
                         break;
                 }
                 return false;
@@ -168,12 +163,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                         btnright.setBackgroundResource(R.mipmap.right_press);
-                        sendMessage(rightCode);
+                        sendMessage(PreferenceUtil.getInstance().getRightCode());
                         break;
 
                     case MotionEvent.ACTION_UP:
                         btnright.setBackgroundResource(R.mipmap.right);
-                        sendMessage(stopCode);
+                        sendMessage(PreferenceUtil.getInstance().getStopCode());
                         break;
                 }
                 return false;
@@ -187,12 +182,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                         btnback.setBackgroundResource(R.mipmap.back_press);
-                        sendMessage(backCode);
+                        sendMessage(PreferenceUtil.getInstance().getDownCode());
                         break;
 
                     case MotionEvent.ACTION_UP:
                         btnback.setBackgroundResource(R.mipmap.back);
-                        sendMessage(stopCode);
+                        sendMessage(PreferenceUtil.getInstance().getStopCode());
                         break;
                 }
                 return false;
@@ -202,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         btnstop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMessage(stopCode);
+                sendMessage(PreferenceUtil.getInstance().getStopCode());
             }
         });
 
@@ -261,15 +256,15 @@ public class MainActivity extends AppCompatActivity {
                     // construct a string from the buffer
                     String writeMessage = new String(writeBuf);
                     String result = "";
-                    if(writeMessage.equals(stopCode)){
+                    if(writeMessage.equals(PreferenceUtil.getInstance().getStopCode())){
                         result = "停车";
-                    }else if(writeMessage.equals(leftCode)){
+                    }else if(writeMessage.equals(PreferenceUtil.getInstance().getLeftCode())){
                         result = "左转";
-                    }else if(writeMessage.equals(rightCode)){
+                    }else if(writeMessage.equals(PreferenceUtil.getInstance().getRightCode())){
                         result = "右转";
-                    }else if(writeMessage.equals(upCode)){
+                    }else if(writeMessage.equals(PreferenceUtil.getInstance().getUpCode())){
                         result = "前进";
-                    }else if(writeMessage.equals(backCode)){
+                    }else if(writeMessage.equals(PreferenceUtil.getInstance().getDownCode())){
                         result = "后退";
                     }
                     Log.d("蓝牙小车:",result);

@@ -15,6 +15,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/ImageTranslucentTheme">
+
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
         <activity android:name=".MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>

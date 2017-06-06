@@ -1,9 +1,11 @@
 package com.wty.app.bluetoothcar;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +17,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.wty.app.bluetoothcar.bluetooth.BluetoothChatService;
 import com.wty.app.bluetoothcar.bluetooth.DeviceListActivity;
 import com.wty.app.bluetoothcar.utils.PreferenceUtil;
+
+import rx.functions.Action1;
 
 import static com.wty.app.bluetoothcar.bluetooth.BluetoothChatService.DEVICE_NAME;
 import static com.wty.app.bluetoothcar.bluetooth.BluetoothChatService.MESSAGE_DEVICE_NAME;
@@ -55,13 +60,25 @@ public class MainActivity extends AppCompatActivity {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "手机无蓝牙设备", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
         }else{
-
             if(!mBluetoothAdapter.isEnabled()){
-                Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableIntent,REQUEST_ENABLE_BT);
+                if (Build.VERSION.SDK_INT >= 23) {
+                    RxPermissions.getInstance(MainActivity.this)
+                            .request(Manifest.permission.ACCESS_COARSE_LOCATION,
+                                    Manifest.permission.ACCESS_FINE_LOCATION)
+                            .subscribe(new Action1<Boolean>() {
+                                @Override
+                                public void call(Boolean aBoolean) {
+                                    if (aBoolean) {
+                                        Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                                        startActivityForResult(enableIntent,REQUEST_ENABLE_BT);
+                                    }
+                                }
+                            });
+                } else {
+                    Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableIntent,REQUEST_ENABLE_BT);
+                }
             }else{
                 // Initialize the BluetoothChatService to perform bluetooth connections
                 mChatService = new BluetoothChatService(this, mHandler);
@@ -72,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (mChatService != null && mBluetoothAdapter.isEnabled()) {
+        if (mChatService != null && mBluetoothAdapter != null && mBluetoothAdapter.isEnabled()) {
             // Only if the state is STATE_NONE, do we know that we haven't started already
             if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
                 mChatService.start();
@@ -84,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         if (mChatService != null) mChatService.stop();
-        if(mBluetoothAdapter.isEnabled()){
+        if(mBluetoothAdapter != null && mBluetoothAdapter.isEnabled()){
             mBluetoothAdapter.disable();
         }
     }
@@ -223,6 +240,12 @@ public class MainActivity extends AppCompatActivity {
      * @param message A string of text to send.
      */
     private void sendMessage(String message) {
+
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(this, "手机无蓝牙设备", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Check that we're actually connected before trying anything
         if (mChatService == null ||(mChatService.getState() != BluetoothChatService.STATE_CONNECTED)) {
             Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();

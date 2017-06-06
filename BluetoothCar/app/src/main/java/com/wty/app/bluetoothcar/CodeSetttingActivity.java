@@ -1,5 +1,6 @@
 package com.wty.app.bluetoothcar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.wty.app.bluetoothcar.utils.PreferenceUtil;
@@ -18,6 +20,7 @@ public class CodeSetttingActivity extends AppCompatActivity {
 
     EditText et_stop,et_up,et_down,et_left,et_right;
     Button bt_submit;
+    LinearLayout layout_about;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class CodeSetttingActivity extends AppCompatActivity {
         et_right = (EditText) findViewById(R.id.et_right);
         et_down = (EditText) findViewById(R.id.et_back);
         bt_submit = (Button) findViewById(R.id.btn_submit);
+        layout_about = (LinearLayout) findViewById(R.id.layout_about);
 
         et_down.setText(PreferenceUtil.getInstance().getDownCode());
         et_up.setText(PreferenceUtil.getInstance().getUpCode());
@@ -49,6 +53,14 @@ public class CodeSetttingActivity extends AppCompatActivity {
                     Toast.makeText(CodeSetttingActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
                     finish();
                 }
+            }
+        });
+
+        layout_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CodeSetttingActivity.this,AboutActivity.class);
+                startActivity(intent);
             }
         });
     }

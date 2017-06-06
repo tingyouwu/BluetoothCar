@@ -36,6 +36,9 @@ android {
         wandoujia {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]//豌豆荚
         }
+        tengxun {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "tengxun"]//腾讯应用宝
+        }
     }
 
     buildTypes {

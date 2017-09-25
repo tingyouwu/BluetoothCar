@@ -69,17 +69,20 @@ public class DeviceListActivity extends Activity {
 		// Get the local Bluetooth adapter
 		mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
-		// 获取当前已经配对的蓝牙设备
-		Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
-		if (pairedDevices.size() > 0) {
-			findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
-			for (BluetoothDevice device : pairedDevices) {
-				mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+		if(mBtAdapter != null){
+			// 获取当前已经配对的蓝牙设备
+			Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
+			if (pairedDevices.size() > 0) {
+				findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
+				for (BluetoothDevice device : pairedDevices) {
+					mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+				}
+			} else {
+				String noDevices = getResources().getText(R.string.none_paired).toString();
+				mPairedDevicesArrayAdapter.add(noDevices);
 			}
-		} else {
-			String noDevices = getResources().getText(R.string.none_paired).toString();
-			mPairedDevicesArrayAdapter.add(noDevices);
 		}
+
 	}
 
 	@Override

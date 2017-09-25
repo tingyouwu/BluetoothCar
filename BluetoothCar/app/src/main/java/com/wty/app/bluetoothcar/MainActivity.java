@@ -35,6 +35,7 @@ import static com.wty.app.bluetoothcar.bluetooth.BluetoothChatService.TOAST;
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton btngo,btnstop,btnleft,btnright,btnback,settings;
+    private ImageButton btnleft_up,btnleft_down,btnright_up,btnright_down;
     TextView tv_setting;
 
     private static final int REQUEST_CONNECT_DEVICE = 1;
@@ -55,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
         btnright = (ImageButton) findViewById(R.id.btnright);
         btnstop = (ImageButton) findViewById(R.id.btnstop);
         btnback = (ImageButton) findViewById(R.id.btnback);
+        btnleft_up = (ImageButton) findViewById(R.id.btnleft_up);
+        btnleft_down = (ImageButton) findViewById(R.id.btnleft_down);
+        btnright_up = (ImageButton) findViewById(R.id.btnright_up);
+        btnright_down = (ImageButton) findViewById(R.id.btnright_down);
+
         tv_setting = (TextView) findViewById(R.id.tv_setting);
         initListener();
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -137,6 +143,79 @@ public class MainActivity extends AppCompatActivity {
      * @Decription 初始化各个按钮效果
      **/
     private void initListener(){
+
+        btnleft_up.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        sendMessage(PreferenceUtil.getInstance().getLeftUpCode());
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        sendMessage(PreferenceUtil.getInstance().getStopCode());
+                        break;
+                }
+                return false;
+            }
+
+
+        });
+
+        btnleft_down.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        sendMessage(PreferenceUtil.getInstance().getLeftDownCode());
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        sendMessage(PreferenceUtil.getInstance().getStopCode());
+                        break;
+                }
+                return false;
+            }
+
+
+        });
+
+        btnright_up.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        sendMessage(PreferenceUtil.getInstance().getRightUpCode());
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        sendMessage(PreferenceUtil.getInstance().getStopCode());
+                        break;
+                }
+                return false;
+            }
+
+
+        });
+
+        btnright_down.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        sendMessage(PreferenceUtil.getInstance().getRightDownCode());
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        sendMessage(PreferenceUtil.getInstance().getStopCode());
+                        break;
+                }
+                return false;
+            }
+
+
+        });
+
         btngo.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();

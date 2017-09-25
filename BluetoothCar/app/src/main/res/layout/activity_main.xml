@@ -34,12 +34,12 @@
         android:background="@mipmap/right" />
 
     <ImageButton
-        android:id="@+id/btnback"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_below="@+id/btnstop"
-        android:layout_alignLeft="@+id/btnstop"
-        android:background="@mipmap/back" />
+    android:id="@+id/btnback"
+    android:layout_width="65dp"
+    android:layout_height="65dp"
+    android:layout_below="@+id/btnstop"
+    android:layout_alignLeft="@+id/btnstop"
+    android:background="@mipmap/back" />
 
     <ImageButton
         android:id="@+id/btngo"
@@ -48,6 +48,39 @@
         android:layout_above="@+id/btnstop"
         android:layout_alignLeft="@+id/btnstop"
         android:background="@mipmap/up" />
+
+    <ImageButton
+        android:id="@+id/btnleft_up"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignLeft="@+id/btnleft"
+        android:layout_alignTop="@id/btngo"
+        android:background="@mipmap/left_up" />
+
+    <ImageButton
+        android:id="@+id/btnleft_down"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_above="@+id/btnstop"
+        android:layout_alignLeft="@+id/btnleft"
+        android:layout_alignBottom="@+id/btnback"
+        android:background="@mipmap/left_down" />
+
+    <ImageButton
+        android:id="@+id/btnright_up"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignRight="@+id/btnright"
+        android:layout_alignTop="@id/btngo"
+        android:background="@mipmap/right_up" />
+
+    <ImageButton
+        android:id="@+id/btnright_down"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignRight="@+id/btnright"
+        android:layout_alignBottom="@+id/btnback"
+        android:background="@mipmap/right_down" />
 
     <ImageButton
         android:layout_width="40dp"

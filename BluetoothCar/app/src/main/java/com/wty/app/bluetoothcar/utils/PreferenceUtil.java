@@ -17,6 +17,10 @@ public class PreferenceUtil {
 	public static String UP_CODE = "up";//
 	public static String DOWN_CODE = "down";//
 	public static String STOP_CODE = "stop";//
+	public static String LEFT_UP_CODE = "LEFT_UP_CODE";//等级
+	public static String RIGHT_UP_CODE = "RIGHT_UP_CODE";//
+	public static String LEFT_DOWN_CODE = "LEFT_DOWN_CODE";//
+	public static String RIGHT_DOWN_CODE = "RIGHT_DOWN_CODE";//
 
 	private SharedPreferences mSharedPreferences;
 
@@ -54,6 +58,22 @@ public class PreferenceUtil {
 
 	public String getRightCode() {
 		return mSharedPreferences.getString(RIGHT_CODE,"4");
+	}
+
+	public String getLeftUpCode() {
+		return mSharedPreferences.getString(LEFT_UP_CODE,"5");
+	}
+
+	public String getLeftDownCode() {
+		return mSharedPreferences.getString(LEFT_DOWN_CODE,"6");
+	}
+
+	public String getRightUpCode() {
+		return mSharedPreferences.getString(RIGHT_UP_CODE,"7");
+	}
+
+	public String getRightDownCode() {
+		return mSharedPreferences.getString(RIGHT_DOWN_CODE,"8");
 	}
 
 	public String getUpCode() {

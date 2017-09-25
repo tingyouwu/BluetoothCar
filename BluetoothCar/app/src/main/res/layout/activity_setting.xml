@@ -27,7 +27,7 @@
             android:layout_marginLeft="10dp"
             android:maxLength="1"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="请输入左转编码"/>
+            android:hint="请输入编码"/>
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +49,7 @@
             android:layout_marginLeft="10dp"
             android:maxLength="1"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="请输入右转编码"/>
+            android:hint="请输入编码"/>
     </LinearLayout>
 
     <LinearLayout
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:hint="请输入前进编码"
+            android:hint="请输入编码"
             android:maxLength="1"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             />
@@ -95,7 +95,7 @@
             android:layout_marginLeft="10dp"
             android:maxLength="1"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="请输入后退编码"/>
+            android:hint="请输入编码"/>
 
     </LinearLayout>
 
@@ -118,7 +118,99 @@
             android:layout_marginLeft="10dp"
             android:maxLength="1"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="请输入停止编码"/>
+            android:hint="请输入编码"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnleft_up"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@mipmap/left_up"/>
+
+        <EditText
+            android:id="@+id/et_leftup"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:maxLength="1"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="请输入编码"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnleft_down"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@mipmap/left_down"/>
+
+        <EditText
+            android:id="@+id/et_leftdown"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:maxLength="1"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="请输入编码"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnright_up"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@mipmap/right_up"/>
+
+        <EditText
+            android:id="@+id/et_rightup"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:maxLength="1"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="请输入编码"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnright_down"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@mipmap/right_down"/>
+
+        <EditText
+            android:id="@+id/et_rightdown"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:maxLength="1"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="请输入编码"/>
 
     </LinearLayout>
 
@@ -138,7 +230,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="20dp"
-        android:text="说明:\n1.本页面用于设置蓝牙小车左转/右转/前进/后退/停止编码。\n2.编码只能是0-9数字或者大小写英文字母中的一个。\n3.初始值为：前进 1 后退 2 左转 3 右转 4 停止 0。\n4.编码不能相同。"
+        android:text="编码只能是0-9数字或者英文字母中的一个"
         />
 
     <LinearLayout
